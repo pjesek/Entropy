@@ -27,6 +27,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -37,7 +39,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -45,6 +51,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Block.class)
 public class BlockMixin {
+
+    @Inject(method = "updateEntityMovementAfterFallOn", at = @At("HEAD"), cancellable = true)
+    private void bounce(BlockGetter level, Entity entity, CallbackInfo ci) {
+        if(Variables.bouncyBlocks && !entity.isSuppressingBounce()) {
+            ci.cancel();
+            Vec3 vec3 = entity.getDeltaMovement();
+            if (vec3.y < (double)0.0F) {
+                double d = entity instanceof LivingEntity ? (double) 1.0F : 0.8;
+                entity.setDeltaMovement(vec3.x, -vec3.y * d, vec3.z);
+            }
+        }
+    }
+
+    @Inject(method = "fallOn", at = @At("HEAD"), cancellable = true)
+    private void cancelFallDamage(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
+        if(Variables.bouncyBlocks && !entity.isSuppressingBounce()) {
+            ci.cancel();
+        }
+    }
 
     @Inject(method = "popResource", at = @At("HEAD"), cancellable = true)
     private static void randomDrops(Level world, BlockPos pos, ItemStack stack, CallbackInfo ci) {

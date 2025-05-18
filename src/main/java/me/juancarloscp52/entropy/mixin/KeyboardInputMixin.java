@@ -31,7 +31,7 @@ public class KeyboardInputMixin extends ClientInput {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void applyEvents(CallbackInfo ci) {
-        if (Variables.forceForward) {
+        if (Variables.forceForward || Variables.mouseSpinning) {
             this.keyPresses = new Input(
                 true,
                 keyPresses.backward(),

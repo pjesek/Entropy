@@ -22,5 +22,15 @@
       "ambient/nether/warped_forest/mood9",
       "ambient/nether/warped_forest/creak3"
     ]
+  },
+  "flashbang": {
+    "sounds": [
+      "entropy:flashbang"
+    ]
+  },
+  "chicken_jockey": {
+    "sounds": [
+      "entropy:chicken_jockey"
+    ]
   }
 }

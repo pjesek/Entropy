@@ -36,6 +36,13 @@ public class MouseHandlerMixin {
     private double accumulatedDY;
 
     @Inject(method = "turnPlayer", at = @At("HEAD"))
+    private void spinMouse(CallbackInfo ci) {
+        if (Variables.mouseSpinning) {
+            this.accumulatedDX += 10d;
+        }
+    }
+
+    @Inject(method = "turnPlayer", at = @At("HEAD"))
     private void driftMouse(CallbackInfo ci) {
         if (Variables.mouseDrifting) {
             this.accumulatedDX += Variables.mouseDriftingSignX * 1.5d;

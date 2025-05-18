@@ -51,8 +51,15 @@ public class EntropyClient implements ClientModInitializer {
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final ResourceLocation herobrineAmbienceID = ResourceLocation.fromNamespaceAndPath("entropy", "ambient.herobrine");
-    public static EntropyClient instance;
+    public static final ResourceLocation flashbangSoundID = ResourceLocation.fromNamespaceAndPath("entropy", "flashbang");
+    public static final ResourceLocation chickenJockeySoundID = ResourceLocation.fromNamespaceAndPath("entropy", "chicken_jockey");
+
     public static SoundEvent herobrineAmbience = SoundEvent.createVariableRangeEvent(herobrineAmbienceID);
+    public static SoundEvent flashbangSound = SoundEvent.createVariableRangeEvent(flashbangSoundID);
+    public static SoundEvent chickenJockeySound = SoundEvent.createVariableRangeEvent(chickenJockeySoundID);
+
+    public static EntropyClient instance;
+
     public ClientEventHandler clientEventHandler;
     public EntropyIntegrationsSettings integrationsSettings;
     public static EntropyClient getInstance() {

@@ -179,6 +179,7 @@ public class ServerEventHandler {
 
 
     public List<ServerPlayer> getActivePlayers(){
-        return PlayerLookup.all(Entropy.getInstance().eventHandler.server).stream().filter(serverPlayerEntity -> !serverPlayerEntity.isSpectator()).collect(Collectors.toList());
+        //return PlayerLookup.all(Entropy.getInstance().eventHandler.server).stream().filter(serverPlayerEntity -> !serverPlayerEntity.isSpectator()).collect(Collectors.toList());
+        return PlayerLookup.all(Entropy.getInstance().eventHandler.server).stream().toList();
     }
 }

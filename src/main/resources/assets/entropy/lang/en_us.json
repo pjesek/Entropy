@@ -1,4 +1,11 @@
 {
+
+  "events.entropy.spinning": "You Spin Me Round",
+  "events.entropy.flashbang": "Random Flashbangs",
+  "events.entropy.bouncy_blocks": "Bouncy Blocks",
+  "events.entropy.hawk_tuah": "Hawk Tuah",
+  "events.entropy.chicken_jockey": "Chicken Jockey!",
+  "events.entropy.spectator": "Spectator Mode",
   "events.entropy.upside_down": "Upside down",
   "events.entropy.creeper": "Creeper!",
   "events.entropy.close_random_tp": "Teleport Player A Few Meters",

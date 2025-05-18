@@ -18,6 +18,8 @@
 package me.juancarloscp52.entropy;
 
 public class Variables {
+
+    public static boolean bouncyBlocks = false;
     public static boolean forceForward = false;
     public static boolean onlySidewaysMovement = false;
     public static boolean onlyBackwardsMovement = false;
@@ -37,6 +39,7 @@ public class Variables {
     public static float forcedPitch = 0;
     public static boolean randomDrops = false;
     public static boolean mouseDrifting = false;
+    public static boolean mouseSpinning = false;
     public static int mouseDriftingSignX = 0;
     public static int mouseDriftingSignY = 0;
     public static boolean luckyDrops = false;

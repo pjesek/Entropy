@@ -23,7 +23,6 @@ import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import me.juancarloscp52.entropy.events.Event;
 import me.juancarloscp52.entropy.events.EventRegistry;
 import me.juancarloscp52.entropy.events.EventType;
-import me.juancarloscp52.entropy.events.db.StutteringEvent;
 import me.juancarloscp52.entropy.networking.ClientboundJoinConfirm;
 import me.juancarloscp52.entropy.networking.ClientboundJoinSync;
 import me.juancarloscp52.entropy.networking.ClientboundRemoveEnded;
@@ -161,10 +160,10 @@ public class Entropy implements ModInitializer {
                                         if(eventHandler != null) {
                                             Holder.Reference<EventType<?>> event = ResourceArgument.getResource(source, "event", EventRegistry.REGISTRY_KEY);
 
-                                            // If running on integrated server, prevent running Stuttering event.
+/*                                            // If running on integrated server, prevent running Stuttering event.
                                             if(FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER && event.value().equals(StutteringEvent.TYPE)){
                                                 throw ERROR_INVALID_ON_CLIENT.create(event.getRegisteredName());
-                                            }
+                                            }*/
 
                                             if(eventHandler.runEvent(event.value().create()))
                                                 Entropy.LOGGER.warn("New event run via command: {}", event.getRegisteredName());
